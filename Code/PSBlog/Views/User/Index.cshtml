@@ -1,0 +1,35 @@
+﻿@model PSBlog.ViewModels.UserProfileModel
+@{
+    ViewBag.Title = @User.Identity.Name + "Profile";
+}
+
+<h2>@User.Identity.Name Profile</h2>
+
+<p>@Html.ActionLink("Log out", "LogOut")</p>
+
+@if (Model.IsAdministrator)
+{
+    @Html.ActionLink("Manage users", "List")
+}
+
+
+@if (Model.IsUserHaveBlog)
+{
+    <p>
+        @Html.ActionLink("Delete your blog", "Delete", "Blog", new { id = Model.UserBlogId },null)
+    </p>
+}
+else
+{
+    <p>
+        @Html.ActionLink("Create New Blog", "Create", "Blog")
+    </p>
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $("#nav-log-in").addClass('active');
+        });
+    </script>
+}

@@ -1,0 +1,39 @@
+﻿@model PSBlog.ViewModels.PostDetailsModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_BlogLayout.cshtml";
+}
+
+<h3><a href="/b/@Model.Blog.UrlSlug">@Html.DisplayFor(model => model.Blog.Title)</a></h3>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Post.Title)</h4>
+
+    <dl>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Post.DatePosted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Post.DatePosted)
+        </dd>
+    </dl>
+    @(new HtmlString(@Model.Post.Content))
+</div>
+
+<div>
+    @{Html.RenderPartial("~/Views/Post/_ListComments.cshtml", Model.Post.Comments);}
+</div>
+<div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        Html.RenderPartial("~/Views/Post/_CreateComments.cshtml",
+            new PSBlog.ViewModels.CreateCommentModel
+            {
+                ReturnBlogSlug = Model.Blog.UrlSlug,
+                ReturnPostSlug = Model.Post.UrlSlug,
+                UserName = User.Identity.Name
+            });
+    }
+</div>

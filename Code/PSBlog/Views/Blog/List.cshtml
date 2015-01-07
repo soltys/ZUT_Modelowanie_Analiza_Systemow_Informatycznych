@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PSBlog.Models.Blog>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Blog list</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+          Title
+        </th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a href="/b/@item.UrlSlug">@Html.DisplayFor(modelItem => item.Title)</a>
+        </td>
+        
+    </tr>
+}
+
+</table>
+@section scripts{
+    <script>
+    $(function(){
+        $("#nav-blog-list").addClass('active');
+    });
+    </script>
+}
