@@ -2,7 +2,7 @@
 set mainFile=projekt
 set inputTex=tex\%mainFile%.tex
 set outputPdf=tmp\%mainFile%.pdf
-set releaseFile=projekt_komponentowe_JavaEE.pdf
+set releaseFile=Modelowanie_Analiza_Systemow_Informatycznych.pdf
 rem tworzenie katalogu tymczasowego
 if not exist tmp mkdir tmp
 rem skrypt do generacji doumentu PDF
